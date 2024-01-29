@@ -1,0 +1,20 @@
+<%- include("../partials/header.ejs") %>
+
+<table>
+  <tr>
+    <th>Airline</th>
+    <th>Airport</th>
+    <th>Flight No.</th>
+    <th>Departure Date/Time</th>
+  </tr>
+  <% flights.forEach((f)=>{%>
+
+  <tr>
+    <td><%= f.airline%></td>
+    <td><%= f.airport%></td>
+    <td><%= f.flightNo%></td>
+    <td><%= f.departs.toLocaleString() %></td>
+
+    <% })%>
+  </tr>
+</table>
