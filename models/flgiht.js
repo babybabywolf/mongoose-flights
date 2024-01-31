@@ -6,7 +6,15 @@ function addOneYear() {
     const createdDate = new Date();
     return new Date(createdDate.getFullYear() + 1, createdDate.getMonth(), createdDate.getDate());
 }
-
+const destinationSchema = new Schema({
+    airport:{
+        type: String,
+        enum: ["AUS", "DFW", "DEN", "LAX", "SAN"]
+    },
+    arrival:{
+        type: Date,
+    }
+})
 // Flight schema definition
 const flightSchema = new Schema({
     airline: {
@@ -26,8 +34,13 @@ const flightSchema = new Schema({
     departs: {
         type: Date,
         default: addOneYear // Set default as a reference to the function
+    },
+    destinations: {
+        type:[destinationSchema]
     }
 });
+
+
 
 // Export the Flight model
 module.exports = mongoose.model("Flight", flightSchema);

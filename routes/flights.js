@@ -29,6 +29,11 @@ async function create (req, res){
   res.redirect("/flights");
 
 }
+
+async function show (req, res){
+  const flight = await Flight.findById(req.params.id);
+  res.render("flights/show", {flight: flight})//this rendr the show view
+}
 //get all flights
 
 router.get("/", showAll);
@@ -38,6 +43,9 @@ router.get("/", showAll);
 router.get("/new", addFlightForm);
 
 router.post("/", create);
+
+//view flight details
+router.get("/:id", show);
 
 
 module.exports = router;
